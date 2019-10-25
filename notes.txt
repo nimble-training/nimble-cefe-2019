@@ -1,0 +1,96 @@
+
+
+CEFE NIMBLE Workshop
+
+Description:
+This workshop provides a hands-on introduction to NIMBLE, an R package for performing statistical analyses.  NIMBLE provides a flexible system for MCMC, and other algorithms which operate on hierarchical models.  This workshop will introduce the NIMBLE system, demonstrate creating and operating statistical models in NIMBLE, fitting models to data using MCMC, modifying MCMC algorithms to achieve improved sampling performance, and extending the modeling syntax with user-defined distributions and user-defined functions.  The workshop involves a hands-on lab component, and presents a variety of ecological models and data sets as motivational examples.
+
+Schedule:
+23-24 October 2019  
+9–12: Session 1
+12–1: Lunch
+1–4: Session 2
+
+
+Outline:
+Day 1 9am-4pm:
+Session 1: Introduction to NIMBLE and MCMC 
+Session 2: Improving MCMC Performance 
+Day 2 9am-4pm:
+Session 3: nimbleEcology R Package 
+Session 4: Programming and Advanced Uses of NIMBLE 
+
+
+Bonjour,
+Nous avons le plaisir de confirmer votre inscription au workshop Nimble animé par Daniel Turek, et qui aura lieu les 23 et 24 octobre en grande salle de réunion au Centre d'Ecologie Fonctionnelle et Evolutive, 1919 route de Mende. Vous trouverez le programme ainsi que les instructions d'installation de Nimble ci-dessous. Concernant la logistique, les personnes extérieures au campus recevrons par email un laissez-passer dont il faudra se munir pour entrer sur le campus. Le déjeuner pourra être pris sur le campus au restaurant administratif au tarif de 12.77 euros.
+N'hésitez pas à me contacter si vous avez la moindre question. Sur ce, passez un excellent week-end !
+Olivier
+
+
+Hello,
+We are pleased to confirm your registration to the Nimble workshop led by Daniel Turek, which will take place on 23 and 24 October in a large meeting room at the Functional and Evolutionary Ecology Center, 1919 route de Mende. You will find the program and Nimble installation instructions below. Regarding the logistics, the people outside the campus will receive by email a pass that will be needed to enter the campus. Lunch can be taken on campus at the administrative restaurant for 12.77 euros.
+Do not hesitate to contact me if you have any questions. On this, have a great weekend!
+Olivier
+
+
+
+NIMBLE and Software Installation Instructions
+
+1) R
+Download links and instructions are available at:
+https://cran.r-project.org/
+
+2) RStudio (optional)
+Download links and instructions are available at:
+https://www.rstudio.com/products/rstudio/download/
+
+3) R packages: igraph, coda, nimble
+From RStudio, packages can be installed using the dropdown menu: Tools > Install Packages ...
+From the R prompt, packages can be installed using:
+install.packages("igraph")
+install.packages("coda")
+install.packages("nimble")
+
+4) C++ compiler (Windows: Rtools; Mac OSX: Xcode)
+
+Windows: Install Rtools (https://cran.r-project.org/bin/windows/Rtools/).  Important: during the installation process, you'll have to check the "PATH" checkbox, allowing the installer to modify the system PATH variable, so that R can find Rtools.
+
+Mac OSX: Install Xcode.  This is available from either the Apple Developer Site (https://developer.apple.com/xcode/downloads/), or from the Apple App Store (https://itunes.apple.com/us/app/xcode/id497799835?ls=1&mt=12)
+
+5) To verify you have correctly installed the C++ compiler:
+
+- Restart R (and Rstudio)
+- Install the R package: "devtools"
+- Execute the following R code:
+library(devtools)
+devtools::has_devel()
+
+This final command should not produce any output.  If you do not have a C++ compiler installed, it will give an error message.
+
+6) Additional NIMBLE installation instructions can be found in Chapter 4 of the NIMBLE User Manual:
+https://r-nimble.org/html_manual/cha-installing-nimble.html
+
+===================
+------- OLDER -------
+===================
+
+De : Hao Ho [tam.ho@sydney.edu.au]
+Objet : CEFE NIMBLE Workshop
+
+Dear Dr Gimenez,
+
+My name is Tam Ho. I’m a postdoc in psychology and neuroscience at the University of Pisa.
+
+Jean-Michel Hupé from CerCo in Toulouse forwarded me your announcement of the CEFE NIMBLE Workshop. I am fully aware it is targeted at ecologists. Still, I wanted to ask if I, as a neuroscientist, could attend the workshop as well.
+
+Very few psychologists and neuroscientists do Bayesian statistics. So, workshops such as the one you’re offering are rather hard to find. I just came back from a “workshop” in Bologna, for example, which dedicated 2-3 hours to discussing the potential application of Bayesian statistics in our field. It was interesting but I still have no idea how to apply Bayesian statistics to my data.  
+
+My research also involves very complex data (related to neural oscillations which necessitate frequency and phase analyses) that cannot be dealt with paired-sample t-tests and ANOVAs, which are the only statistics we psychologists are taught in our training. I had to revert to resampling methods and confidence intervals for my current research. This is why I would like to learn more about Bayesian statistics in hope it’ll provide me with more ways to examine my data.
+
+If you think the workshop could meet some of my needs (I’m proficient in R and MATLAB btw) and, of course, if there’s still space in the workshop, I would be very happy to come to Montpelier later this month.
+
+Kind regards, Tam
+
+
+
+

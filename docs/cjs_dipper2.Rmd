@@ -1,0 +1,89 @@
+---
+title: "Exercise: Dipper Model with Gender and Time"
+output: html_document
+---
+
+---
+
+\   
+
+
+
+### Dipper CJS model with gender and time dependence
+
+Now, you'll modify the dipper CJS model to use the `gender` variable.  Modify your model, so that:
+
+1. Probability of detection depends on gender.  That is, `gender = 1` individuals have probability of detection $p_1$, and `gender = 2` individuals have probability of detection $p_2$.
+
+2. Survival probability is different for each year.  That is, the probability of surviving from year 1 to year 2 is $\phi_1$, and the probability of surviving from year 2 to year 3 is $\phi_2$, etc.  So your final model will have parameters $\phi_1$, $\phi_2$, $\phi_3$, $\phi_4$, $\phi_5$, and $\phi_6$, representing the survival probabilities from each year.
+
+
+\   
+
+### Results
+
+```{r, echo = FALSE, message = FALSE}
+library(nimble, quiet = TRUE)
+load('~/github/nimble/nimble-cefe-2019/docs/data/dipper_samples.Rdata')
+```
+
+
+See if you can get the same (or similar) results for the modified dipper model:
+
+```{r fig.height = 3, fig.width = 8}
+round(samplesSummary(samples2), 2)
+
+library(basicMCMCplots)
+
+basicMCMCplots::samplesPlot(samples2, 'p')
+
+basicMCMCplots::samplesPlot(samples2, 'phi')
+```
+
+\   
+
+### WAIC for model comparison
+
+If you have time, try using the WAIC model information criterion, to compare these two versions of the dipper model.
+
+NIMBLE's MCMC will calculate WAIC for you.  You can do this by supplying the argument `WAIC = TRUE` to `runMCMC`.  You'll also have to provide the argument `enableWAIC = TRUE` to `configureMCMC`, and also monitor all latent states in the model (in this case, the `x`'s).
+
+Larger values of WAIC indicate a better (more parsimonious) model fit to the data.
+
+You can <a href="fig/Gelman2014_WAIC.pdf" target="_blank" style="color: blue">read more about WAIC here</a>.
+
+
+
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+
+
+
+

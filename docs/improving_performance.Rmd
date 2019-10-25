@@ -1,0 +1,74 @@
+---
+title: "Improving MCMC Performance"
+output: html_document
+---
+
+---
+
+\   
+
+### Improving the litters model
+
+We're going to try 3 different strategies for improving the sampling
+of the litters model.
+
+\   
+
+#### 1. Slice Sampling
+
+Using slice sampling for the $a_i$ and $b_i$ variables.  You can <a href="fig/slice_sampling.pdf" target="_blank" style="color: blue">read about slice sampling here</a>.
+
+Slice sampling is available in NIMBLE using the `slice` sampler.
+
+\   
+
+#### 2. Joint (Block) Sampling
+
+Using joint updates for the pairs: $a_1, b_1$, and also for $a_2, b_2$.
+
+Joint (block) sampling is available in NIMBLE using the `RW_block` sampler.
+
+\   
+
+#### 3. Joint samplng with custom initial proposal covariance
+
+The performance of joint sampling can improve dramatically, if we provide a reasonable guess for the initial proposal covariances, for each joint update.
+
+You can provide a starting point for the proposal covariance to the `RW_block` sampler using the `propCov` element of the control list.
+
+We'll use the empirical covariance of our most recent posterior samplers, as our starting point for the proposal covariance.
+
+
+\   
+
+
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+

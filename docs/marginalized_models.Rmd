@@ -1,0 +1,67 @@
+---
+title: "Maximum Likelihood using Marginalized Models"
+output: html_document
+---
+
+---
+
+\   
+
+
+
+
+### Maximizing the likelihood of a marginalized model
+
+Let's consider how we would optimize the parameters in a model.
+
+Basically, we'll construct a function that returns the model's (log-)likelihood, which we can then pass to R's `optim` function to do the numerical optimization. Note that NIMBLE also has an `optim` that you can use within NIMBLE algorithms, for example that's what's used in NIMBLE's MCEM algorithm.
+
+Maximizing over the parameters amounts to finding the posterior mode of a model.  This is generally hard to do, or can only be done for models with a small number of parameters and without latent states.
+
+**Question: what models have we encountered today, which don't have latent states?**
+
+\   
+
+### Creating a function to maximize
+
+So, for these models, we can create a function which returns the total (marginalized) model (log-)probability.  This will be called the *objective function*, since we'll be trying to maximize this function, to find the posterior mode.
+
+Then we can pass this objective function into `optim`, to find the exact values of the maximum (marginal) likelihood parameters.  By the way, this process is essentially what's known as "empirical Bayes".
+
+We'll go back, and use the marginalized form of the occupancy model which we wrote earlier.  That's the one which used the `dOcc_v` distribution to marginalize over (integrate out) the latent states.
+
+Let's get to it!
+
+
+
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+
+

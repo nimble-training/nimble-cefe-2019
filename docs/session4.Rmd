@@ -1,0 +1,55 @@
+---
+title: "CEFE NIMBLE Workshop"
+author: "*Daniel Turek, Williams College, USA*"
+output: html_document
+---
+
+---
+
+
+\   
+
+#### Session 4: Programming and Advanced Uses of NIMBLE
+
+\   
+
+##### <a href="https://danielturek.github.io/nimble-cefe-2019/nimble_mcmc" target="_blank" style="color: blue">One-Line MCMC: `nimbleMCMC`</a>
+
+##### <a href="https://danielturek.github.io/nimble-cefe-2019/marginalized_models" target="_blank" style="color: blue">Maximum Likelihood using Marginalized Models</a>
+
+##### <a href="https://danielturek.github.io/nimble-cefe-2019/smc" target="_blank" style="color: blue">Sequential Monte Carlo (SMC)</a>
+
+##### <a href="https://danielturek.github.io/nimble-cefe-2019/composition_algorithms" target="_blank" style="color: blue">Programming in NIMBLE and Composition of Algorithms</a>
+
+##### <a href="https://danielturek.github.io/nimble-cefe-2019/writing_sampler" target="_blank" style="color: blue">Writing an MCMC Sampler in NIMBLE</a>
+
+##### <a href="https://danielturek.github.io/nimble-cefe-2019/final_thoughts" target="_blank" style="color: blue">Final Thoughts</a>
+
+
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+
+
+
+
+
+
+
+

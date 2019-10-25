@@ -1,0 +1,128 @@
+---
+title: "Programming in NIMBLE and Composition of Algorithms"
+output: html_document
+---
+
+---
+
+\   
+
+### Why program in NIMBLE?
+
+At first glance, the BUGS language supports all basic distributions.
+
+In BUGS and JAGS, people use the "zeros trick" to create new distributions:
+
+- Define a "data" value of 0 following a Poisson.
+- Write the Poisson mean to give the desired probability.
+- This is awkward and limited to what can be written in BUGS.
+
+A "distribution" can be **any** relationship defining a (log probability).
+
+But there are many Examples of custom distribution needs:
+
+- Zero-inflated distributions (ZIB, ZIP, ZINB)
+- Capture-recapture distributions
+- Hidden Markov model distributions (multi-state capture-recapture)
+- Occupancy and dynamic occupancy distributions
+- Distributions that use a model-specific parameterization
+
+This is a lot of what the `nimbleEcology` package has done!
+
+\   
+
+### Write new MCMC samplers
+
+MCMC is more like list of components (samplers) than a single algorithm. Choosing the right samplers can yield huge gains in MCMC efficiency.
+
+Examples:
+
+- Samplers for `dcat` latent states (inherently inefficient)
+- Samplers for integer latent states
+- Samplers for SCR locations
+- Samplers for data-augmentation virtual individuals
+- Samplers on transformed coordinate scales
+- Samplers that take advantage of specific model structure
+- **Samplers drawn from the huge MCMC literature, which has many ideas that are rarely used in applied work because they are not in general software**
+
+\   
+
+### Write new algorithms
+
+MCMC does not address every statistical question.  There are needs for many other, general algorithms for operating on hierarchical models.
+
+Some examples:
+
+- Normalizing constants for model comparisons (information criteria)
+- Cross-validation (in NIMBLE)
+- Calibrated posterior-predictive p-values (in development)
+- Maximum likelihood methods (MCEM, others in development)
+- Sequential Monte Carlo (in NIMBLE)
+- WAIC (in NIMBLE)
+- Model simulators
+- Model likelihood calculators
+- Future: Laplace approximation and quadrature
+- Other approaches to model selection, validation, and estimation.
+- **Your ideas**
+
+\   
+
+### Sequential Monte Carlo and MCMC
+
+MCMC and SMC are (currently) the two primary families of algorithms in NIMBLE. Why have a platform that supports multiple algorithm families?
+
+ - Users can specify a model and then try multiple algorithms on their models.
+ - The algorithms use common computational motifs - e.g., proposing values, computing model density values, storing samples - so can be supported by similar language constructs.
+ - Hybrid (composable) algorithms can use computations from both:
+     - Particle MCMC embeds SMC within NIMBLE's MCMC engine.
+     - Other methods (not in NIMBLE) use MCMC computations within SMC and could be built in NIMBLE.
+
+\   
+
+### Algorithm composability
+
+As noted, NIMBLE allows one to nest nimbleFunctions, so one can compose algorithms by using your own or NIMBLE's built-in algorithms within the context of the algorithm you are constructing.
+
+That is, there's no need to build an entire MCMC engine if you need a bit of MCMC within a different algorithm
+
+Examples:
+
+- Sampling marginalized parameters
+- Particle MCMC
+- The entire MCMC engine, for that matter
+  
+
+
+
+
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+
+

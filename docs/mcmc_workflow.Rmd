@@ -1,0 +1,50 @@
+---
+title: "NIMBLE MCMC Workflow"
+output: html_document
+---
+
+---
+
+\   
+
+The diagram below shows the general workflow for using NIMBLE's MCMC engine.
+
+\  
+
+You can also <a href="https://danielturek.github.io/nimble-cefe-2019/fig/nimbleMCMCworkflow.pdf" style="color: blue">download this diagram here</a>
+
+\  
+
+<center><img src="fig/nimbleMCMCworkflow.png"></center>
+
+
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+

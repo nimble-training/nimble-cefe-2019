@@ -1,0 +1,113 @@
+---
+title: "Occupancy Model"
+output: html_document
+---
+
+---
+
+\   
+
+### Occupancy model with covariates
+
+Our next example uses simulated data.  Here, we considers an occupancy model, with $T$ = 3 visits to each of $S$ = 100 different sites, looking for presence of a certain species.
+
+There are also two covariates.  Vegetation height at each site may affect the occupancy probability, and wind speed (which varies with each visit) may affect the detection probability.
+
+\   
+
+### Occupancy model data
+
+You can <a href="https://danielturek.github.io/nimble-cefe-2019/data/occupancy_data.Rdata" style="color: blue">download the simulated occupancy data here</a>.
+
+The simulated data for this example consists of:
+
+- `vege`: A length $S$ = 100 vector with the vegetation cover at each site
+- `wind`: A $S$ = 100 by $T$ = 3 matrix, giving the wind speed at each site, on each visit.
+- `obs`: A $S$ = 100 by $T$ = 3 matrix, giving the observed occupancy (1), or absence (0) of the species, for each site and each visit.
+
+
+\   
+
+### Exercise: Occupancy Model
+
+We'll construct and fit this occupancy model in NIMBLE.
+
+Use latent states $z_i$ to represent the true occupancy of each site.  We'll use a static occupancy model, where we assume the true occupancy state is constant.  That is, there's no colonization or removals from sites, between sampling occasions.
+
+Use $\phi_i$ to represent the probability of species presence, at each site.  This may depend on the vegetation cover at each site (`vege[i]`).  We'll model $\phi_i$ on the logit scale, as:
+
+$$\text{logit}(\phi_i) = \alpha_1 + \alpha_2 \cdot \text{vege}_i$$
+
+Use $p_{i,j}$ to represent the probability of detection, at each site and each visit.  This will depend on the wind speed on that visit (`wind[i, j]`).  We'll also model $p_{i,j}$ on the logit scale, as:
+
+$$\text{logit}(p_{i,j}) = \beta_1 + \beta_2 \cdot \text{wind}_{i,j}$$
+
+\   
+
+### Results and True Values
+
+I ran this model for `niter = 20000` samples, and discarded the first `nburnin = 10000` samples as vurnin.
+
+```{r, echo = FALSE, message = FALSE}
+library(nimble, quiet = TRUE)
+library(basicMCMCplots)
+load('~/github/nimble/nimble-cefe-2019/docs/data/occupancy_samples.Rdata')
+```
+
+I got the following results:
+
+```{r }
+round(samplesSummary(samples), 2)
+```
+
+\   
+
+The true values that were used for generating the data were:
+
+- $\alpha_1 = 0$
+- $\alpha_2 = 3$
+- $\beta_1 = -2$
+- $\beta_2 = -3$
+
+\   
+
+```{r fig.height = 4, fig.width = 8}
+basicMCMCplots::samplesPlot(samples)
+```
+
+
+
+
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+
+
+
+

@@ -1,0 +1,124 @@
+---
+title: "The `nimbleEcology` Package"
+output: html_document
+---
+
+---
+
+\   
+
+
+
+
+
+
+### Welcome to `nimbleEcology`
+
+`nimbleEcology` is a brand new package, which provides distributions that can be used in NIMBLE models for common ecological model components.  These include:
+
+1. Cormack-Jolly-Seber (CJS) capture-recapture models
+2. Occupancy  and Dynamic occupancy models
+3. Multi-state and Multi-event capture-recapture models (called Dynamic hidden Markov Models, or DHMMs)
+
+We expect to add N-mixture models in the future, but these are not currently in the `nimbleEcology` package.
+
+
+\   
+
+### How to use `nimbleEcology`
+
+The distributions provided in `nimbleEcology` let you simplify model code and the algorithms that use it, such as MCMC.
+
+For the ecological models in `nimbleEcology`, the simplification comes from removing some discrete latent states from the model and instead doing the corresponding probability (or likelihood) calculations in a specialized distribution.
+
+The `nimbleEcology` package provides specialized distributions for the following classes of models:
+
+\  
+
+#### 1. Cormack-Jolly-Seber (CJS) Models
+
+The `dCJS` distribution lets you remove the latent dead / alive latents states from the model.
+
+Actually, there are several different versions of the `dCJS` distribution.  Which one you want depends on whether the survival probabilities are time dependent, and whether the detection probabilities are time dependent. 
+
+\  
+
+#### 2. Occupancy and Dynamic Occupancy Models
+
+The `dOcc` distribution lets you remove the latent occupied / unoccupied latent states from the model.
+
+Once again, it's a little more complex.  There are different versions of this distribution, for static or dynamic occupancy models, and also depending on whether the occupancy and detection probabilites are time dependent.
+
+\  
+
+#### 3. Multi-State or Multi-Event Capture-Recapture Models
+
+For multi-state or multi-event models capture-recapture models, the the `dHMM` distribution lets you remove the individual latent states (such as location, or breeding status, or individual state) from the model.
+
+
+
+\   
+
+### Installing the `nimbleEcology` package
+
+<!--
+As of right now, the `nimbleEcology` package is only available on GitHub.  You can install it using the follwoing code:
+library(devtools)
+devtools::install_github("nimble-dev/nimbleEcology")
+library(nimbleEcology)
+-->
+
+You can install the `nimbleEcology` package from CRAN, using:
+
+\  
+
+```{r eval = FALSE}
+install.packages("nimbleEcology")
+```
+
+\   
+
+### Learn more about `nimbleEcology`
+
+You can read much more about the `nimbleEcology` package at <a href="https://danielturek.github.io/nimble-cefe-2019/Introduction_to_nimbleEcology" target="_blank" style="color: blue">the package vignette</a>.
+
+
+
+
+
+
+
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+
+
+
+
+

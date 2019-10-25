@@ -1,0 +1,33 @@
+#! /usr/local/bin/Rscript
+# usage:
+# ./make_slides example
+# ./make_slides bugs
+# etc.
+
+library(knitr)
+library(rmarkdown)
+
+module <- commandArgs(trailingOnly = TRUE)
+source <- paste(module, ".Rmd", sep = "")
+
+if (file.exists(source)){
+    ## *.Rmd -> *.md:
+    MDfile <- paste0('~/github/nimble/nimble-cefe-2019/', module, '.md')
+    knit(source, envir = new.env(), output = MDfile)
+    ## *.md -> *_slides.html:
+    system(paste("pandoc -s --mathjax -t slidy ", paste(module, ".md", sep = ""), " -o ", paste(module, "_slides.html", sep = ""), ""))
+    ## *.Rmd -> *_.html:
+    render(source, envir = new.env()) # for style that can hide code chunks dynamically
+    ## *.Rmd -> *.R
+    Rfile <- paste0('~/github/nimble/nimble-cefe-2019/', module, '.R')
+    purl(source, output = Rfile)  ## make separate .R file with just the code
+    ## remove *.R files with no lines:
+    lines <- readLines(Rfile)
+    if(length(lines) == 1 && lines[1] == '') system(paste0('rm ', Rfile))
+    ## remove the *.md file at the end:
+    system(paste0('rm ', MDfile))
+    ##system(paste("pandoc -s --mathjax -t slidy ", paste(module, ".md", sep = ""), " -o ", paste(module, "_slides_standalone.html", sep = ""), " --self-contained"))
+    ## knit2html(source, envir = new.env())
+} else {
+    cat("Error: ", source, " does not exist.\n")
+}

@@ -1,0 +1,58 @@
+---
+title: "CEFE NIMBLE Workshop"
+author: "*Daniel Turek, Williams College, USA*"
+output: html_document
+---
+
+---
+
+
+\   
+
+#### Session 3: `nimbleEcology` R Package
+
+\   
+
+##### <a href="https://danielturek.github.io/nimble-cefe-2019/nimble_ecology" target="_blank" style="color: blue">The `nimbleEcology` Package</a>
+
+##### <a href="https://danielturek.github.io/nimble-cefe-2019/dcjs_dipper" target="_blank" style="color: blue">Dipper Model with `dCJS` Distribution</a>
+
+##### <a href="https://danielturek.github.io/nimble-cefe-2019/occupancy_model" target="_blank" style="color: blue">Occupancy Model</a>
+
+##### <a href="https://danielturek.github.io/nimble-cefe-2019/occupancy_model_docc" target="_blank" style="color: blue">Occupancy Model with `dOcc` Distribution</a>
+
+##### <a href="https://danielturek.github.io/nimble-cefe-2019/orchid_model" target="_blank" style="color: blue">Multi-State Capture-Recapture Model: Orchids</a>
+
+##### <a href="https://danielturek.github.io/nimble-cefe-2019/orchid_model_dhmm" target="_blank" style="color: blue">Multi-State Capture-Recapture Model: `dHMM` distribution</a>
+
+##### <a href="https://danielturek.github.io/nimble-cefe-2019/orchid_comparison" target="_blank" style="color: blue">Multi-State Capture-Recapture Model: Comparisons</a>
+
+
+
+
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+
+
+
+
+
+
+

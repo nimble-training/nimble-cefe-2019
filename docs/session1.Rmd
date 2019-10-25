@@ -1,0 +1,53 @@
+---
+title: "CEFE NIMBLE Workshop"
+author: "*Daniel Turek, Williams College, USA*"
+output: html_document
+---
+
+---
+
+
+\   
+
+#### Session 1: Introduction to NIMBLE and MCMC
+
+\   
+
+##### <a href="https://danielturek.github.io/nimble-cefe-2019/nimble_background" target="_blank" style="color: blue">NIMBLE Background</a>
+
+##### <a href="https://danielturek.github.io/nimble-cefe-2019/bugs_language" target="_blank" style="color: blue">The BUGS Language</a>
+
+##### <a href="https://danielturek.github.io/nimble-cefe-2019/nimble_models" target="_blank" style="color: blue">NIMBLE Model Objects</a>
+
+##### <a href="https://danielturek.github.io/nimble-cefe-2019/mcmc_workflow" target="_blank" style="color: blue">NIMBLE MCMC Workflow</a>
+
+##### <a href="https://danielturek.github.io/nimble-cefe-2019/running_mcmc" target="_blank" style="color: blue">Running an MCMC</a>
+
+##### <a href="https://danielturek.github.io/nimble-cefe-2019/convergence_posterior" target="_blank" style="color: blue">Convergence and Posterior Distribution</a>
+
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+
+
+
+
+
+
+

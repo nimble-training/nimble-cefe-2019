@@ -1,0 +1,297 @@
+---
+title: "Convergence and Posterior Distribution"
+output: html_document
+---
+
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+library(nimble, quiet = TRUE)
+load('~/github/nimble/nimble-cefe-2019/docs/data/litters_samples.Rdata')
+samples <- samplesList[[1]]
+```
+
+
+\  
+
+### Summary of posterior distribution
+
+We already saw the `samplesSummary` function.  Let's see what else we
+can do with MCMC posterior samples.
+
+```{r }
+round(samplesSummary(samples), 2)
+```
+
+\   
+
+### Effective sample size (ESS)
+
+When looking at the MCMC traceplot for one variable, we see that
+samples are not sequentially independent.
+
+That is the nature of MCMC sampling.
+
+```{r }
+plot(samples[2051:2100, 'a[1]'], type = 'b', xlab = '', ylab = '')
+```
+
+In this case we see both autocorrelation and Metropolis-Hastings
+rejections, which have occurred when the state does not change.  This
+does not happen in JAGS, because it does not use Metropolis-Hastings.
+
+*Effective sample size (ESS)* is the equivalent number of
+independent samples in an MCMC chain for one parameter.
+
+\   
+
+### What does "equivalent number of independent samples" mean?
+
+If the $m$ posterior samples of $p_i$ were drawn independently, we could say:
+
+$\text{var}(\bar{p_i}) = \text{var}( \frac{1}{m} \sum_{i = 1}^m p_i )= \frac{\text{var}(p_i)}{m}$
+
+Instead, we have
+
+$\text{var}(\bar{p_i}) = \frac{\text{var}(p_i)}{\text{ESS}}$
+
+where ESS is the *Effective Sample Size*.
+
+\   
+
+### Calculate ESS: `effectiveSize`
+
+The `coda` R package provides a function for calculating the ESS,
+called `effectiveSize`.
+
+Out of our 10,000 samples, let's see the equivlent number of
+*independent* posterior samples:
+
+```{r }
+library(coda)
+```
+
+```{r, eval = FALSE}
+ESS <- coda::effectiveSize(samples)
+```
+
+```{r }
+round(ESS)
+```
+
+We can see that the effective sample size is considerably smaller than the number of samples!
+
+\   
+
+
+### Measuring MCMC performance: MCMC efficiency
+
+We define *MCMC efficiency* as
+
+$\text{Efficiency} = \frac{\text{ESS}}{\text{computation time}}$
+
+This is the number of effectively independent samples generated per
+time.  The ESS is different for every parameter, but computation time is the same for every parameter: the total time.
+
+We do not count setup steps like model building and compilation as
+  part of computation time.  Even though these take time, we are more
+  interested in the final MCMC performance.
+
+
+We want a single number to measure the performance of an MCMC. Often there are many fast-mixing parameters and one or a few
+slow-mixing ones. We need all parameters to be mixed well to rely on
+results.
+
+Therefore our single measure of efficiency is:
+
+\  
+
+**Net MCMC efficiency = Minimum MCMC efficiency over all parameters**
+
+\   
+
+It may be tempting to think mean (across parameters) of MCMC
+efficiency is a good measure of overall performance.  If you rely on
+mean efficiency, you could end up like the statistician who drowned in
+a river with an average depth of three feet.
+
+That is, if some parameters are mixing very well and others very poorly, you should not feel the results are acceptable.
+
+
+\   
+
+### Visual inspection of posterior distributions
+
+We'll use the `basicMCMCplots` function to visually inspect the
+posterior.  It provides several functions for looking at one or more
+MCMC chains.
+
+First, let's run the `litters` MCMC again, to generate 3 chains of samples:
+
+```{r eval = FALSE}
+samplesList <- runMCMC(cLittersMCMC,
+                       niter = 15000,
+                       nburnin = 5000,
+                       nchains = 3)
+
+samples <- samplesList[[1]]
+```
+
+### `samplesPlot` function for looking at one chain
+
+We'll look at the first chain only, first.
+
+`samplesPlot` let's you visually inspect one chain.
+
+We'll only look at the `a` and `b` variables.
+
+```{r fig.height = 3}
+library(basicMCMCplots)
+
+basicMCMCplots::samplesPlot(samples, var = c("a", "b"))
+```
+
+Since these are on vastly difference scales, we can use the `scale =
+TRUE` argument, to normalize them.  This will let us look at the
+actual mixing.
+
+```{r fig.height = 3}
+basicMCMCplots::samplesPlot(samples,
+                            var = c("a", "b"),
+                            scale = TRUE)
+```
+
+The mixing for `a[1]` and `b[1]` doesn't look very good.  We'll see if 
+we can improve that, later. 
+
+Notice the arguments `densityplot = FALSE`, and `burnin`:
+
+```{r fig.height = 3}
+basicMCMCplots::samplesPlot(samples,
+                            var = c("a[1]", "b[1]"),
+                            scale = TRUE,
+                            densityplot = FALSE,
+                            burnin = 5000)
+```
+
+**Question**: What seems to be happening with `a[1]` and `b[1]` ??
+
+
+Mixing is not the best. We'll explore different sampling strategies
+that fix the problems later in the workshop.
+
+\   
+
+### `chainsPlot` and `chainsSummary` for inspecting multiple chains
+
+The `chainsPlot` function of the `basicMCMCplots` package is analogous
+to `samplesPlot`, but lets you inspect multiple chains.
+
+Here, we'll use the `samplesList` object, which contains 3 MCMC
+chains.
+
+
+```{r }
+basicMCMCplots::chainsPlot(samplesList,
+                           var = c("a", "b"))
+```
+
+The `chainsPlot` function provides many arguments also, to control
+variables, burnin, number of columns, the legend, and saving the plot
+to a file.  See `help(chainsPlot)` for more information.
+
+\   
+
+Finally, `chainsSummary` will help us quickly compare the posteriors
+from multiple chains.
+
+This can be very useful, to visually check if the chains agree with
+each other.
+
+The circles represent posterior medians, and the vertical lines show
+95% Bayesian Credible Intervals (BCIs).
+
+```{r }
+basicMCMCplots::chainsSummary(samplesList)
+```
+
+These generally look good, except the `a[1]` parameter looks
+troublsome.  Perhaps the `b[1]` parameter, too.
+
+
+\  
+
+
+
+### Assessing MCMC convergence from multiple chains 
+
+We'll use the `coda` package again to assess convergence of our MCMC.
+
+We'll use the commonly used Gelman-Rubin potential scale reduction
+factor diagnostic, which requires multiple chains.
+
+However, the `gelman.diag` from the `coda` package requires the MCMC
+samples to be `coda.mcmc` objects.  So, NIMBLE's `runMCMC` function
+provides an option for this:
+
+
+```{r eval = FALSE}
+samplesCodaList <- runMCMC(cLittersMCMC,
+                           niter = 15000,
+                           nburnin = 5000,
+                           nchains = 3,
+                           samplesAsCodaMCMC = TRUE)
+```
+
+```{r }
+gelman.diag(samplesCodaList)
+```
+
+For "convergence", we want these values ("scale reduction factors") to
+be very close to 1.  They'll never be less than 1, but should be as
+close to 1 as possible.
+
+This is not very good.  The mixing of the `a[1]` and `b[1]` has not converged.
+
+\  
+
+
+### Other MCMC tools in NIMBLE
+
+  - WAIC for model comparison
+  - Cross-validation
+
+
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+
+
+

@@ -1,0 +1,105 @@
+---
+title: "Final Thoughts"
+output: html_document
+---
+
+---
+
+\   
+
+
+
+### Getting help with and contributing to NIMBLE
+
+**We have post-doc funding!**
+
+**We have funding to bring selected users to Berkeley for intensive collaboration.**
+
+ - Announcements: <a href="https://groups.google.com/forum/#!forum/nimble-announce" target="_blank" style="color: blue">nimble-announce Google site</a>
+ - User support/discussion: <a href="https://groups.google.com/forum/#!forum/nimble-users" target="_blank" style="color: blue">nimble-users Google site</a>
+ - Write and contribute an algorithm using NIMBLE
+ - Help with development of NIMBLE: email `nimble.stats@gmail.com`, or see <a href="https://github.com/nimble-dev/nimble" target="_blank" style="color: blue">github.com/nimble-dev</a>
+
+We try to be responsive on the the user support/discussion list, and heartily welcome others to contribute answers as well. 
+
+\  
+
+### Future and ongoing work in NIMBLE
+
+Continued development of Bayesian nonparametrics
+
+Automatic derivatives (coming very soon):
+
+- Better samplers
+- Hamiltonian Monte Carlo
+- Laplace approximation and quadrature
+- Maximum likelihood
+
+Improved scalability (in progress)
+
+- Faster model and algorithm building and compilation
+- Particularly for models with many exchangeable nodes
+- Parallelization in the DSL
+- Improved linear algebra (including sparse matrices)
+
+Improved workflow (in progress)
+
+- Saving and re-loading work
+- More flexible DSL syntax
+- Better DSL error trapping/messages
+
+\   
+
+### Big-picture goals
+
+  - Improving reproducibility of research that uses hierarchical models and of methods research for hierarchical models
+  - Enabling easier comparison of methods
+
+\   
+
+### Acknowledgements and legal stuff
+
+NIMBLE has been funded by:
+
+ - NSF Advances in Biological Informatics (DBI-1147230)
+ - NSF Software Infrastructure for Sustained Innovation (ACI-155048)
+ - NSF DMS Collaborative Research (DMS-1622444)
+ - Google Summer of Code 2015 (Nick Michaud) and 2017 (Colin Lewis-Beck)
+ - Berkeley Institute for Data Science support for Daniel Turek
+
+This workshop material was created by the NIMBLE development team and is licensed under a Creative Commons Attribution 3.0 Unported License. You are free to use, modify, and redistribute any of this material with attribution.
+
+
+
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+
+
+

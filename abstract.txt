@@ -1,0 +1,14 @@
+
+CEFE NIMBLE Workshop
+23-24 October 2019
+
+This workshop provides a hands-on introduction to NIMBLE, an R package for performing statistical analyses.  NIMBLE provides a flexible system for MCMC, and other algorithms which operate on hierarchical models.  This workshop will introduce the NIMBLE system, demonstrate creating and operating statistical models in NIMBLE, fitting models to data using MCMC, modifying MCMC algorithms to achieve improved sampling performance, and extending the modeling syntax with user-defined distributions and user-defined functions.  The workshop involves a hands-on lab component, and presents a variety of ecological models and data sets as motivational examples.
+
+
+
+9am - 4am sounds. perfect to me, with a 1 hr lunch break.
+
+Schedule for both days:
+9am – 12pm Lecture and working
+12 – 1pm Lunch
+1 – 4pm Lecture and working

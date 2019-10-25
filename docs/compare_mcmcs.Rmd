@@ -1,0 +1,78 @@
+---
+title: "Comparing MCMC Performance: `compareMCMCs`"
+output: html_document
+---
+
+---
+
+\   
+
+
+### Package `compareMCMCs`
+
+NIMBLE provides a nice tool for comparing MCMC performance, called `compareMCMCs`.
+
+This actually used to be part of the core NIMBLE package.  Now, it's on the way to its own package, which will be called `compareMCMCs`.
+
+Right now, you can install the (future) `compareMCMCs` package from GitHub, using this code:
+
+\   
+
+```{r eval = FALSE}
+library(devtools)
+
+devtools::install_github("nimble-dev/compareMCMCs", subdir = "compareMCMCs")
+
+library(compareMCMCs)
+```
+
+\   
+
+
+The general framework for using `compareMCMCs` is:
+
+```{r eval = FALSE}
+comp <- compareMCMCs(modelInfo,
+                     MCMCs,
+                     nimbleMCMCdefs,
+                     monitors,
+                     MCMCcontrol)
+
+make_MCMC_comparison_pages(comp, dir, modelName)
+```
+
+\   
+
+Let's try using `compareMCMCs`, to compare these different versions of the litters model.
+
+
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+

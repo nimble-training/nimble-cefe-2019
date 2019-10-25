@@ -1,0 +1,183 @@
+---
+title: "Dipper Model with `dCJS` Distribution"
+output: html_document
+---
+
+---
+
+\   
+
+### Revisting the Dipper Model
+
+Now we're going to revisit the dipper model, but this time use the `dCJS` distribution from the `nimbleEcology` package to speed things up.
+
+
+\   
+
+### The `dCJS` distribution in `nimbleEcology`
+
+There are four versions of the `dCJS` distribution in `nimbleEcology`.  These differ only in whether survival probability and/or capture probability are time-dependent or time-independent, yielding four combinations:
+
+- `dCJS_ss`: Both survival and capture probabilities are time-independent (scalars)
+- `dCJS_sv`: Survival is time-independent (scalar).  Capture probability is time-dependent (vector)
+- `dCJS_vs`: Survival is time-dependent (vector).  Capture probability is time-independent (scalar)
+- `dCJS_vv`: Both survival and capture probabilities are time-dependent (vectors)
+
+So, for updating our first version of the dipper model, we'll want the first one (`dCJS_ss`), where both survival and detection are time-independent.
+
+The usage of this distribution is as follows:
+
+`y[i, first[i]:T] ~ dCJS_ss(probSurvive = phi, probCapture = p, len = length[i])`
+
+Note the following:
+
+- `y[i, 1:T]` is a vector of capture history.
+- `phi` and `p` are the (constant) probabilities of survival and detection.
+- `length` is a new variable (which we'll need to create), which gives the length of the capture history for each individual.
+
+\   
+
+### Implementation of the `dCJS_ss` distribution
+
+The `dCJS_ss` distribution is implemented as a `nimbleFunction` (we'll talk more about these later).
+
+<!--
+## XXXXXXXXXXXXX update dCJS_ss code below, if it changes!!!
+-->
+
+\   
+
+```{r eval = FALSE}
+dCJS_ss <- nimbleFunction(
+    run = function(
+        x = double(1), probSurvive = double(), probCapture = double(),
+        len = double(0, default = 0), log = integer(0, default = 0)) {
+        ## Note the calculations used here are actually in hidden Markov model form.
+        probAliveGivenHistory <- 1
+        ## logProbData will be the final answer
+        logProbData <- 0
+        lenX <- length(x)
+        for (t in 1:lenX) {
+            ## probAlive is P(Alive(t) | x(1)...x(t-1))
+            ## probAliveGivenHistory is (Alive(t-1) | x(1)...x(t-1))
+            probAlive <- probAliveGivenHistory * probSurvive
+            if (!is.na(x[t])) {
+                if (x[t] == 1) {
+                    ## ProbThisObs = P(x(t) | x(1)...x(t-1))
+                    probThisObs <- probAlive * probCapture
+                    probAliveGivenHistory <- 1
+                } else {
+                    probAliveNotSeen <- probAlive * (1 - probCapture)
+                    probThisObs <- probAliveNotSeen + (1 - probAlive)
+                    probAliveGivenHistory <- probAliveNotSeen / probThisObs
+                }
+            }
+            logProbData <- logProbData + log(probThisObs)
+        }
+        if (log) return(logProbData)
+        return(exp(logProbData))
+        returnType(double(0))
+    }
+)
+ ```
+
+
+\   
+
+### Dipper Data
+
+In case you need it again, you can <a href="https://danielturek.github.io/nimble-cefe-2019/data/dipper_data.Rdata" style="color: blue">download the dipper data here</a>.
+
+
+\   
+
+
+### Exercise: Implementing the `dCJS` dipper model
+
+Let's modify our dipper code, to use the `dCJS_ss`
+distribution.
+
+The updated model will no longer contain any `x[i, t]` latent states.
+
+
+\  
+
+### Results
+
+
+```{r, echo = FALSE, message = FALSE}
+library(nimble, quiet = TRUE)
+load('~/github/nimble/nimble-cefe-2019/docs/data/dipper_samples.Rdata')
+samplesOrig <- samples
+samplesCJS <- samples3
+```
+
+Here are the results I got for this `dCJS` version of the dipper model:
+
+```{r fig.height = 3, fig.width = 8}
+round(samplesSummary(samplesCJS), 2)
+
+library(basicMCMCplots)
+
+basicMCMCplots::samplesPlot(samplesCJS, c('p', 'phi'))
+```
+
+\   
+
+### Compare results to original latent state model
+
+It's good to compare these results from the `dCJS` model with the
+original results, from the latent state version of the model.
+
+Samples from the latent state version are called `samplesOrig`, and
+from the `dCJS` model are called `samplesCJS`.
+
+We'll use `chainsPlot`, and also `chainsSummary` to compare these samples.
+
+```{r fig.height = 3, fig.width = 8} 
+library(basicMCMCplots)
+
+samplesList <- list(latent = samplesOrig,
+                    CJS    = samplesCJS)
+
+basicMCMCplots::chainsPlot(samplesList)
+```
+
+```{r fig.height = 3, fig.width = 4} 
+chainsSummary(samplesList, jitter = 0.2, buffer.left=.7, buffer.right=.7)
+```
+
+
+
+
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+
+

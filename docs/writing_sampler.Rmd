@@ -1,0 +1,102 @@
+---
+title: "Writing an MCMC Sampler in NIMBLE"
+output: html_document
+---
+
+---
+
+\   
+
+
+
+### Writing a sampler
+
+As I've exaplained, NIMBLE is a **system for writing algorithms**, which can be used together.
+
+And all the samplers used in the MCMC are algorithms written in the NIMBLE language, themselves.
+
+
+\  
+
+### Look at the samplers that come in NIMBLE
+
+You can find the implementation for all of NIMBLE's samplers in the <a href="https://github.com/nimble-dev/nimble/blob/devel/packages/nimble/R/MCMC_samplers.R" target="_blank" style="color: blue">source code on GitHub</a>.
+
+\   
+
+### Required arguments and methods for a sampler `nimbleFunction`
+
+It must contain the argument `contains = sampler_BASE`.
+
+- This is a simple class inheritance system that mimic's R's `contains` argument.
+
+The `setup` function must take the arguments `model`, `mvSaved`, `target`, and `control`.
+
+- `model` is the model being sampled.
+- `mvSaved` is a length-one *modelValues* object that keeps an up-to-date copy of all model values, including log probabilities.
+- `target` is a vector of node names to be sampled.
+- `control` is a list that can contain whatever elements you want.
+
+The `run` function (method) must execute the sampler.
+
+The `reset` method must reset the sampler if that means anything for the particular sampler.
+
+- Example: An adaptive sampler would reset its proposal distribution.
+
+\   
+
+### Required behavior of a sampler:
+
+Upon entry, the sampler can assume that `mvSaved[[1]` contains a complete copy of the model's variables, including logProb variables.
+
+The sampler may do whatever it wants (assuming it is valid for MCMC) in its `run` function, including modifying values of model variables, including logProb variables.
+
+Upon exiting the `run` function, `mvSaved[[1]]` must again contain a complete copy of the model's variables, including logProb variables.
+
+- The `mvSaved[[1]]` is like the "current" state of the model.
+- The `run` function puts proposed values in the model and does appropriate calculations.
+- If the proposal is rejected: copy from `mvSaved[[1]]` to the model.
+- If the proposal is accepted: copy from the model to `mvSaved[[1]]`.
+
+
+\   
+
+### Demonstration: Write a Metropolis-Hastings sampler
+
+
+So, we'll try to demonstrate how to write a simple Metropolis-Hastings sampler, in NIMBLE.
+
+Then we'll use it with our old friend, the dipper model.
+
+
+
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+

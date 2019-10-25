@@ -1,0 +1,92 @@
+---
+title: "CEFE NIMBLE Workshop"
+author: "*Daniel Turek, Williams College, USA*"
+output: html_document
+---
+
+
+---
+
+
+\   
+
+### Welcome to the CEFE NIMBLE Workshop
+
+Over the next two days, you'll get an introduction to the `nimble` package for R, including it's use for MCMC, and other statistical algorithms.
+
+We'll also discuss the closely related `nimbleEcology` package, designed specifically for common ecological model structures.
+
+
+\  
+
+You can find these notes, and all workshop materials online:
+
+<a href="https://danielturek.github.io/nimble-cefe-2019/index" style="color: blue">https://danielturek.github.io/nimble-cefe-2019/index</a>
+
+\   
+
+
+---
+
+### Outline
+
+\  
+
+#### Day 1:
+
+<a href="https://danielturek.github.io/nimble-cefe-2019/session1" target="_blank" style="color: blue">Session 1: Introduction to NIMBLE and MCMC</a>
+
+<a href="https://danielturek.github.io/nimble-cefe-2019/session2" target="_blank" style="color: blue">Session 2: Improving MCMC Performance, and Dipper Model</a>
+
+\   
+
+#### Day 2:
+
+<a href="https://danielturek.github.io/nimble-cefe-2019/session3" target="_blank" style="color: blue">Session 3: `nimbleEcology` R Package</a>
+
+<a href="https://danielturek.github.io/nimble-cefe-2019/session4" target="_blank" style="color: blue">Session 4: Programming and Advanced Uses of NIMBLE</a>
+
+\  
+
+---
+
+### Workshop Code
+
+\  
+
+The coding done during the workshop will be <a href="https://danielturek.github.io/nimble-cefe-2019/workshop_codes" style="color: blue">made available here</a>.
+
+
+
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  

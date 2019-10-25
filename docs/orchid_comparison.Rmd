@@ -1,0 +1,103 @@
+---
+title: "Multi-State Capture-Recapture Model: Comparisons"
+output: html_document
+---
+
+---
+
+\   
+
+### Comparing the orchid model results
+
+The `compareMCMCs` package that we saw before, also lets you compare the results from **different** models, if they have top-level parameters in common.
+
+We'll use this, to compare the results from the two different versions of the orchids model.
+
+
+\   
+
+```{r echo = FALSE}
+load('~/github/nimble/nimble-cefe-2019/docs/data/orchid_samples.Rdata')
+load('~/github/nimble/nimble-cefe-2019/docs/data/orchidHMM_samples.Rdata')
+```
+
+
+
+### Rename the MCMCs
+
+Both versions of the MCMC were called `"nimble"`.  So we'll rename them to better represent the results: `latent`, and `HMM`.
+
+The function `renameMCMC` takes the output from `compareMCMCs`, and the **new** name for an MCMC, then the **old** name.
+
+```{r eval = FALSE}
+library(compareMCMCs)
+
+out <- renameMCMC(out, 'latent', 'nimble')
+
+outHMM <- renameMCMC(outHMM, 'HMM', 'nimble')
+```
+
+\  
+
+### Combine the MCMC results together
+
+This is done using simple list concatenation, using R's `c()` function.
+
+```{r eval = FALSE}
+outCombined <- c(out, outHMM)
+```
+
+\   
+
+### Make the comparison results
+
+```{r eval = FALSE}
+make_MCMC_comparison_pages(outCombined, dir = '~/Desktop/orchid', modelName = 'orchid')
+```
+
+\  
+
+The results <a href="https://danielturek.github.io/nimble-cefe-2019/fig/orchid/orchid" target="_blank" style="color: blue">are
+available here</a>.
+
+
+
+
+
+
+
+
+
+
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+
+
+

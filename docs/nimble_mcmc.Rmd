@@ -1,0 +1,105 @@
+---
+title: "One-Line MCMC: `nimbleMCMC`"
+output: html_document
+---
+
+---
+
+\   
+
+By popular request, NIMBLE also provides a "one-liner" for MCMC.
+
+The entire process of
+
+- Creating model
+- Creating MCMC
+- Compiling
+- Running the MCMC
+
+can be done using the `nimbleMCMC` function.
+
+We'll use our old friend the dipper model, as an example:
+
+```{r eval = FALSE}
+library(nimble)
+
+load('~/Downloads/dipper_data.Rdata')
+
+dipperCode <- nimbleCode({
+    phi ~ dunif(0, 1)
+    p ~ dunif(0, 1)
+    for(i in 1:N) {
+        x[i, first[i]] <- 1
+        y[i, first[i]] <- 1
+        for(t in (first[i]+1):T) {
+            x[i, t] ~ dbern(phi * x[i, t-1])
+            y[i, t] ~ dbern(p * x[i, t])
+        }
+    }
+})
+
+dipperConsts <- list(N = dim(sightings)[1], T = dim(sightings)[2], first = first)
+
+dipperData <- list(y = sightings)
+
+xInit <- ifelse(!is.na(y), 1, 0)
+
+dipperInits <- list(phi = 0.5, p = 0.5, x = xInit)
+```
+
+\   
+
+### One-line invocation of MCMC: `nimbleMCMC`
+
+Now, we'll use `nimbleMCMC` to fit the dipper model:
+
+```{r eval = FALSE}
+samples <- nimbleMCMC(dipperCode, dipperConsts, dipperData, dipperInits)
+```
+
+\   
+
+`nimbleMCMC` provides a variety of arguments:
+
+```{r eval = FALSE}
+out <- nimbleMCMC(dipperCode, dipperConsts, dipperData, dipperInits,
+                  nchains = 3,
+                  samples = FALSE,
+                  summary = TRUE,
+                  WAIC = TRUE)
+```
+
+You can find more information using `help(nimbleMCMC)`.
+
+
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+
+

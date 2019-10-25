@@ -1,0 +1,62 @@
+---
+title: "CEFE NIMBLE Workshop"
+author: "*Daniel Turek, Williams College, USA*"
+output: html_document
+---
+
+---
+
+
+\   
+
+#### Session 2: Improving MCMC Performance, and Dipper Model
+
+\  
+
+##### <a href="https://danielturek.github.io/nimble-cefe-2019/improving_performance" target="_blank" style="color: blue">Improving MCMC Performance</a>
+
+##### <a href="https://danielturek.github.io/nimble-cefe-2019/compare_mcmcs" target="_blank" style="color: blue">Comparing MCMC Performance: `compareMCMCs`</a>
+
+<!--
+Examples list:
+- state-space population model: house martins
+- capture-recapture from a transect the Czech republic.
+- simulated N-mixture model with a couple of covariates
+- zero-inflated Poisson N-mixture model: Swiss Great Tits
+- multi-state capture-recapture: ladyslipper orchids
+- simulated occupancy model with a couple of covariates
+- integrated population model: woodchat shrikes
+-->
+
+##### <a href="https://danielturek.github.io/nimble-cefe-2019/cjs_dipper" target="_blank" style="color: blue">Cormack-Jolly-Seber Model with Dipper Data</a>
+
+##### <a href="https://danielturek.github.io/nimble-cefe-2019/cjs_dipper2" target="_blank" style="color: blue">Exercise: Dipper Model with Gender and Time</a>
+
+
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+
+
+
+
+
+
+
+

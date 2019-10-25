@@ -1,0 +1,103 @@
+---
+title: "Cormack-Jolly-Seber Model with Dipper Data"
+output: html_document
+---
+
+---
+
+\   
+
+### Dipper Cormack-Jolly-Seber (CJS) Model
+
+The dipper model is a very common example CJS model.  As used, for example, in <a href="https://link.springer.com/article/10.1007/s10651-016-0353-z" target="_blank" style="color: blue">Turek et al. (2016)</a>, *Environmental and Ecological Statistics*.
+
+The observational data consists binary 1's and 0's, representing observed (1), or not-observed (0).  The data is for $N$ = 209 birds, over a period of $T$ = 7 years.
+
+Of the $N$ = 209 birds, 101 are females, and 108 are males.  Initially we'll ignore gender, for simplicity, but we'll use the gender information later.
+
+The parameters of interest will be survival $\phi$, and probability of detection $p$.  Both of these are assumed to be constant in our first model.
+
+\   
+
+### Dipper Data
+
+You can <a href="https://danielturek.github.io/nimble-cefe-2019/data/dipper_data.Rdata" style="color: blue">download the dipper data here</a>.
+
+This file contains the variables:
+
+- `sightings`: An $N$ = 209 by $T$ = 7 array, containing 1's, 0's and `NA`'s.  Each row represents the sighting history of a unique bird.  Each column is a different year.  Leading `NA` values are observation periods before an individual was first observed.
+- `first`: A vector of length $N$ = 209, where each entry gives the time period for which an individual was first seen.  For example, individal #1 was first seen on time period 1, therefore `first[1] = 1`, whereas individual #13 was first seen on time period 2, therefore `first[13] = 2`.
+- `gender`: A vector of length $N$ = 209, where each entry specifies the gender of a individual.  1's correspond to females, and 2's correspond to males.
+
+\  
+
+### Fitting the dipper model
+
+Let's construct model code for the dipper CJS model.
+
+Then, we'll fit the model using NIMBLE's MCMC.
+
+In our model, we'll use the following nodes:
+
+- `phi`: Probability of survival
+- `p`: Probability detection (capture) probability
+- `x[i, t]`: Latent states representing true alive (1) or dead (0) status, for individual `i` at time `t`
+- `y[i, t]` = Observed data for capture (1) or not-captured (0) for individual `i` at time `t`
+- `first[i]` = Year of first capture for individual `i`
+
+We'll also have to take care to provide appropriate initial values for the `x` matrix.
+
+
+\   
+
+### Results
+
+```{r, echo = FALSE, message = FALSE}
+library(nimble, quiet = TRUE)
+load('~/github/nimble/nimble-cefe-2019/docs/data/dipper_samples.Rdata')
+```
+
+Here are the results I got, for our first dipper CJS model:
+
+```{r }
+round(samplesSummary(samples), 3)
+```
+
+
+
+
+
+
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+\  
+
+
+
+
+
